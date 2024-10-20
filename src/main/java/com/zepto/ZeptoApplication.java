@@ -8,6 +8,8 @@ public class ZeptoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ZeptoApplication.class, args);
+
 	}
+
 
 }
