@@ -21,7 +21,7 @@ public class Grocery {
     private double groceryPrice;
 
     @Column(name = "gerocery_quantity", nullable = false)
-    private long geroceryQuantityy;
+    private long geroceryQuantity;
 
     @Column(name = "country_orgin")
     private String countryOrgin;
