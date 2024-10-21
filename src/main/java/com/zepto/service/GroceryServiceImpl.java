@@ -16,7 +16,9 @@ public class GroceryServiceImpl implements GroceryService{
     @Override
 
     public GroceryDto saveGrocery(GroceryDto groceryDto) {
-        return null;
+        Grocery save = repository.save(mapToEntity(groceryDto));
+        GroceryDto groceryDto1 = mapToDto(save);
+        return groceryDto1;
     }
 
     @Override
