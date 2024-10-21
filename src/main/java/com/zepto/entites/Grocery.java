@@ -14,7 +14,7 @@ public class Grocery {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "Aditya_name")
+    @Column(name = "grocery_name")
     private String groceryName;
 
     @Column(name = "grocery_price", nullable = false)
