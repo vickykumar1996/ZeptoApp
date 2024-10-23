@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class ZeptoApplication {
+public class 	ZeptoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ZeptoApplication.class, args);

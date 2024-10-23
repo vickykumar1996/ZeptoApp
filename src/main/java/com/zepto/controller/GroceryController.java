@@ -7,13 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.web.bind.annotation.PostMapping;
-
-import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,6 +29,13 @@ public class GroceryController {
     public ResponseEntity<List<GroceryDto>>getAllData(){
         List<GroceryDto> groceryDtos = groceryService.ListAllData();
         return new ResponseEntity<>(groceryDtos , HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public  ResponseEntity<GroceryDto> getGroceryById(@PathVariable Long id){
+        GroceryDto groceryById = groceryService.getGroceryById(id);
+        return new ResponseEntity<>(groceryById,HttpStatus.OK);
+
     }
 
 }

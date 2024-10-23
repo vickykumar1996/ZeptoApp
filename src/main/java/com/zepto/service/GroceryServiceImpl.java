@@ -1,6 +1,7 @@
 package com.zepto.service;
 
 import com.zepto.entites.Grocery;
+import com.zepto.exception.ResourceNotFoundException;
 import com.zepto.payload.GroceryDto;
 import com.zepto.repository.GroceryRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,11 +9,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
-public class GroceryServiceImpl implements GroceryService{
-    private  final GroceryRepository repository;
-    private final ModelMapper  mapper;
+public class GroceryServiceImpl implements GroceryService {
+    private final GroceryRepository repository;
+    private final ModelMapper mapper;
+
     @Override
 
     public GroceryDto saveGrocery(GroceryDto groceryDto) {
@@ -29,6 +33,17 @@ public class GroceryServiceImpl implements GroceryService{
     }
 
     @Override
+    public GroceryDto getGroceryById(long id) {
+        Optional<Grocery> optionalGrocery = repository.findById(id);
+        if (optionalGrocery.isPresent()) {
+            return mapToDto(optionalGrocery.get());
+        } else {
+            throw new ResourceNotFoundException("Grocery not found with id: " + id);
+        }
+    }
+
+
+    @Override
     public void deleteReg(long id) {
 
     }
@@ -38,11 +53,12 @@ public class GroceryServiceImpl implements GroceryService{
         return null;
     }
 
-    public GroceryDto mapToDto(Grocery grocery){
+    public GroceryDto mapToDto(Grocery grocery) {
         GroceryDto map = mapper.map(grocery, GroceryDto.class);
-        return  map;
+        return map;
     }
-    public Grocery mapToEntity (GroceryDto groceryDto){
+
+    public Grocery mapToEntity(GroceryDto groceryDto) {
         Grocery map = mapper.map(groceryDto, Grocery.class);
         return map;
     }
