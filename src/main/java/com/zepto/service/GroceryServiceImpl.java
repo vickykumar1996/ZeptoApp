@@ -45,7 +45,7 @@ public class GroceryServiceImpl implements GroceryService {
 
     @Override
     public void deleteReg(long id) {
-
+     repository.deleteById(id);
     }
 
     @Override

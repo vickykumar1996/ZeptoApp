@@ -38,4 +38,12 @@ public class GroceryController {
 
     }
 
+    @DeleteMapping
+    public ResponseEntity<String> deleteReg(@PathVariable long id){
+        groceryService.deleteReg(id);
+        return  new ResponseEntity<>("data is deleted",HttpStatus.OK);
+    }
+
+
+
 }
