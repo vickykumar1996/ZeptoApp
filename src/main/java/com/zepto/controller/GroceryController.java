@@ -2,6 +2,7 @@ package com.zepto.controller;
 
 import com.zepto.payload.GroceryDto;
 import com.zepto.service.GroceryService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class GroceryController {
     private final GroceryService groceryService;
 
     @PostMapping
-    public ResponseEntity<GroceryDto> saveGrocery(@RequestBody GroceryDto groceryDto){
+    public ResponseEntity<GroceryDto> saveGrocery(@Valid @RequestBody GroceryDto groceryDto){
         GroceryDto saveGroceryItem = groceryService.saveGrocery(groceryDto);
         return new ResponseEntity<>(saveGroceryItem, HttpStatus.OK);
     }
