@@ -46,7 +46,7 @@ public class GroceryServiceImpl implements GroceryService {
 
     @Override
     public void deleteReg(long id) {
-        Grocery byId = repository.findById(id).orElseThrow(()-> new NoSuchElementException("id is not present"));
+        Grocery byId = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("id is not present"));
         repository.delete(byId);
     }
 
