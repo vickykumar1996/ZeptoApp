@@ -19,7 +19,6 @@ public class GroceryServiceImpl implements GroceryService {
     private final ModelMapper mapper;
 
     @Override
-
     public GroceryDto saveGrocery(GroceryDto groceryDto) {
         Grocery save = repository.save(mapToEntity(groceryDto));
         GroceryDto groceryDto1 = mapToDto(save);
