@@ -1,4 +1,4 @@
-package com.zepto.Condfig;
+package com.zepto.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
