@@ -45,13 +45,22 @@ public class GroceryServiceImpl implements GroceryService {
 
     @Override
     public void deleteReg(long id) {
-        Grocery byId = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("id is not present"));
+        Grocery byId = repository.findById(id).orElseThrow(()-> new NoSuchElementException("id not found"));
         repository.delete(byId);
     }
 
     @Override
-    public GroceryDto updateReg(long id, GroceryDto dto) {
-        return null;
+    public Grocery updateReg(long id, GroceryDto dto) {
+        Grocery present = repository.findById(id).orElseThrow(() -> new NoSuchElementException ("id is not presents"));
+        present.setGroceryName(dto.getGroceryName());
+        present.setAbout(dto.getAbout());
+        present.setGroceryPrice(dto.getGroceryPrice());
+        present.setCountryOrgin(dto.getCountryOrgin());
+        present.setGeroceryQuantity(dto.getGeroceryQuantity());
+        present.setManufacturerName(dto.getManufacturerName());
+        present.setProductAddress(dto.getProductAddress());
+        Grocery saved = repository.save(present);
+      return saved;
     }
 
     public GroceryDto mapToDto(Grocery grocery) {
@@ -63,4 +72,5 @@ public class GroceryServiceImpl implements GroceryService {
         Grocery map = mapper.map(groceryDto, Grocery.class);
         return map;
     }
+
 }

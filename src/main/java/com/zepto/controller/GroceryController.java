@@ -1,5 +1,6 @@
 package com.zepto.controller;
 
+import com.zepto.entites.Grocery;
 import com.zepto.payload.GroceryDto;
 import com.zepto.service.GroceryService;
 import jakarta.validation.Valid;
@@ -48,5 +49,10 @@ public class GroceryController {
     public ResponseEntity<String> deleteReg(@PathVariable long id){
         groceryService.deleteReg(id);
         return  new ResponseEntity<>("data is deleted",HttpStatus.OK);
+    }
+
+    public ResponseEntity<Grocery>Update(@PathVariable Long id,@RequestBody GroceryDto groceryDto){
+        Grocery grocery = groceryService.updateReg(id, groceryDto);
+        return ResponseEntity.ok(grocery);
     }
 }
