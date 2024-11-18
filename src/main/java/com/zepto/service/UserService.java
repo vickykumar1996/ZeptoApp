@@ -1,6 +1,7 @@
 package com.zepto.service;
 
 import com.zepto.entites.User;
+import com.zepto.payload.UserDto;
 import com.zepto.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -13,6 +14,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepo userRepo;
+    private final JwtService jwtService;
 
     public Object create(User user){
         Optional<User> username = userRepo.findByUsername(user.getUsername());
@@ -28,5 +30,19 @@ public class UserService {
         user.setRole("USER-ROLE");
         User save = userRepo.save(user);
         return save;
+    }
+    public String veriFyLogin(UserDto userDto){
+        Optional<User> username = userRepo.findByUsername(userDto.getUsername());
+        if (username.isPresent()){
+            User user = username.get();
+            if (BCrypt.checkpw(userDto.getPassword() , user.getPassword())){
+                String token = jwtService.generateToken(user.getUsername());
+                return token;
+            }else {
+                return " pass is not match";
+            }
+        }else {
+            return "username is not present";
+        }
     }
 }
