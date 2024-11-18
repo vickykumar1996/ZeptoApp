@@ -15,7 +15,6 @@ public class DummyController {
     @PostMapping
     public ResponseEntity<String> getDummy(){
         return new ResponseEntity<>("Hello friends kaise Ho", HttpStatus.OK);
-
     }
 
 }

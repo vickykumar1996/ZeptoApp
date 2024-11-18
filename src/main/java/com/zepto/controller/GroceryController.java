@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,8 @@ public class GroceryController {
 
     private final GroceryService groceryService;
 
-    @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/add")
     public ResponseEntity<GroceryDto> saveGrocery(@Valid @RequestBody GroceryDto groceryDto , @AuthenticationPrincipal User user){
         groceryDto.setUser(user);
         GroceryDto saveGroceryItem = groceryService.saveGrocery(groceryDto);

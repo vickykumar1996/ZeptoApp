@@ -17,7 +17,9 @@ public class SecurityConfig {
         http.csrf(c->c.disable()).cors(c->c.disable());
         http.addFilterBefore(jwtFilter , AuthorizationFilter.class);
         http.authorizeHttpRequests(auth->auth.requestMatchers("/api/v1/user/signup" , "/api/v1/user/login")
-                .permitAll().anyRequest().authenticated());
+                .permitAll()
+                .requestMatchers("/api/grocery/add").hasRole("ADMIN")
+                .anyRequest().authenticated());
         return http.build();
     }
 }

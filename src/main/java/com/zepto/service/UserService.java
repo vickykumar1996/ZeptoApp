@@ -27,7 +27,7 @@ public class UserService {
         }
         String hashpw = BCrypt.hashpw(user.getUsername(), BCrypt.gensalt(5));
         user.setPassword(hashpw);
-        user.setRole("USER-ROLE");
+//        user.setRole("USER-ROLE");
         User save = userRepo.save(user);
         return save;
     }
