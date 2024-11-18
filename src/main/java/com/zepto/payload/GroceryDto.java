@@ -1,5 +1,6 @@
 package com.zepto.payload;
 
+import com.zepto.entites.User;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -26,4 +27,6 @@ public class GroceryDto {
     private String productAddress;
     @Size(max = 300 ,message = "About sec tion must not exceed 300 charcters")
     private String about;
+
+    private User user;
 }

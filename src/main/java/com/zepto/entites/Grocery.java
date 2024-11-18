@@ -1,5 +1,6 @@
 package com.zepto.entites;
 
+import com.zepto.payload.UserInfoDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,5 +35,9 @@ public class Grocery {
 
     @Column(name = "about")
     private String about;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

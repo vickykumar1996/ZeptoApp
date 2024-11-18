@@ -3,11 +3,12 @@ package com.zepto.service;
 
 import com.zepto.entites.Grocery;
 import com.zepto.payload.GroceryDto;
+import com.zepto.payload.UserInfoDto;
 
 import java.util.List;
 
 public interface GroceryService {
-    GroceryDto saveGrocery(GroceryDto groceryDto);
+    GroceryDto saveGrocery(GroceryDto groceryDto );
     public List<GroceryDto>ListAllData();
 
     GroceryDto getGroceryById(long id);

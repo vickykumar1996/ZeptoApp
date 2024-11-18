@@ -3,6 +3,7 @@ package com.zepto.service;
 import com.zepto.entites.Grocery;
 import com.zepto.exception.ResourceNotFoundException;
 import com.zepto.payload.GroceryDto;
+import com.zepto.payload.UserInfoDto;
 import com.zepto.repository.GroceryRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,7 +20,7 @@ public class GroceryServiceImpl implements GroceryService {
     private final ModelMapper mapper;
 
     @Override
-    public GroceryDto saveGrocery(GroceryDto groceryDto) {
+    public GroceryDto saveGrocery(GroceryDto groceryDto ) {
         Grocery save = repository.save(mapToEntity(groceryDto));
         GroceryDto groceryDto1 = mapToDto(save);
         return groceryDto1;
