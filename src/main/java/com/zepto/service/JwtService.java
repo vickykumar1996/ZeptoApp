@@ -41,6 +41,5 @@ public class JwtService {
                 .build()
                 .verify(token);
         return decodedJWT.getClaim("name").asString();
-
     }
 }

@@ -36,7 +36,7 @@ public class JwtFilter extends OncePerRequestFilter {
             String tokenVal = token.substring(8, token.length() - 1);
             System.out.println(tokenVal);
             String username = jwtService.getUsername(tokenVal);
-            System.out.println(username);
+            System.out.println("this is username " + username);
             Optional<User> user = userRepo.findByUsername(username);
             if (user.isPresent()){
                 User user1 = user.get();

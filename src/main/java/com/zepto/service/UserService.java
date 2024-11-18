@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,8 +29,8 @@ public class UserService {
         String hashpw = BCrypt.hashpw(user.getUsername(), BCrypt.gensalt(5));
         user.setPassword(hashpw);
 //        user.setRole("USER-ROLE");
-        User save = userRepo.save(user);
-        return save;
+         userRepo.save(user);
+        return "successfully create your account";
     }
     public String veriFyLogin(UserDto userDto){
         Optional<User> username = userRepo.findByUsername(userDto.getUsername());
@@ -44,5 +45,10 @@ public class UserService {
         }else {
             return "username is not present";
         }
+    }
+    public List<User> getAllData(User user){
+        List<User> all = userRepo.findAll();
+        user.setRole("ROLE_ADMIN");
+        return all;
     }
 }
