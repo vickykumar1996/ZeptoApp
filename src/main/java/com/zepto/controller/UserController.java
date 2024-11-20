@@ -1,5 +1,6 @@
 package com.zepto.controller;
 
+
 import com.zepto.entites.User;
 import com.zepto.payload.TokenDto;
 import com.zepto.payload.UserDto;
@@ -20,28 +21,30 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public Object create(@RequestBody  User user ) {
+    public Object create(@RequestBody User user) {
         Object object = userService.create(user);
         return object;
 
     }
+
     @PostMapping("/login")
-    public ResponseEntity<?>veryFiToken(@RequestBody UserDto userDto){
+    public ResponseEntity<?> veryFiToken(@RequestBody UserDto userDto) {
         String token = userService.veriFyLogin(userDto);
-        if (token!=null){
+        if (token != null) {
             TokenDto tokenDto = new TokenDto();
             tokenDto.setToken(token);
             tokenDto.setType("Jwt Type");
-            return new ResponseEntity<>(tokenDto , HttpStatus.OK);
-        }else {
+            return new ResponseEntity<>(tokenDto, HttpStatus.OK);
+        } else {
             return new ResponseEntity<>("id pass is incorrect please provide valid id and password",
                     HttpStatus.BAD_REQUEST);
         }
     }
+
     @GetMapping("/get-data")
-    public List<User> getAllUser(User user){
+    public List<User> getAllUser(User user) {
         List<User> allData = userService.getAllData(user);
         return allData;
     }
-
 }
+

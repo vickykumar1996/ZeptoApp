@@ -5,6 +5,7 @@ import com.zepto.entites.User;
 import com.zepto.payload.GroceryDto;
 import com.zepto.payload.UserInfoDto;
 import com.zepto.service.GroceryService;
+import com.zepto.service.GroceryServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ import java.util.Map;
 @RequestMapping("/api/grocery")
 public class GroceryController {
 
-    private final GroceryService groceryService;
+    private final GroceryServiceImpl groceryService;
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
@@ -63,5 +64,11 @@ public class GroceryController {
     public ResponseEntity<Grocery>Update(@PathVariable Long id,@RequestBody GroceryDto groceryDto){
         Grocery grocery = groceryService.updateReg(id, groceryDto);
         return ResponseEntity.ok(grocery);
+    }
+
+    @GetMapping("/search-grocery")
+    public Grocery searchGrocery(@RequestParam("grocery_name") String grocery){
+        Grocery grocery1 = groceryService.searchByName(grocery);
+        return grocery1;
     }
 }

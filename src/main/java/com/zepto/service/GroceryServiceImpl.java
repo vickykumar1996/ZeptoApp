@@ -3,7 +3,6 @@ package com.zepto.service;
 import com.zepto.entites.Grocery;
 import com.zepto.exception.ResourceNotFoundException;
 import com.zepto.payload.GroceryDto;
-import com.zepto.payload.UserInfoDto;
 import com.zepto.repository.GroceryRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -42,7 +41,11 @@ public class GroceryServiceImpl implements GroceryService {
             throw new ResourceNotFoundException("Grocery not found with id: " + id);
         }
     }
-
+    public Grocery searchByName(String groceryName){
+        Grocery groceries = repository.searchGrocery(groceryName)
+                .orElseThrow(()-> new ResourceNotFoundException("groseryName is not fount  "  + groceryName));
+        return groceries;
+    }
 
     @Override
     public void deleteReg(long id) {
