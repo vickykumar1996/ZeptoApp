@@ -33,7 +33,7 @@ public class GroceryController {
 
     private final GroceryServiceImpl groceryService;
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<GroceryDto> saveGrocery(@Valid @RequestBody GroceryDto groceryDto , @AuthenticationPrincipal User user){
         groceryDto.setUser(user);
@@ -67,8 +67,8 @@ public class GroceryController {
     }
 
     @GetMapping("/search-grocery")
-    public Grocery searchGrocery(@RequestParam("grocery_name") String grocery){
-        Grocery grocery1 = groceryService.searchByName(grocery);
+    public Grocery searchGrocery(@RequestParam("searchValue") String searchValue){
+        Grocery grocery1 = groceryService.searchByName(searchValue);
         return grocery1;
     }
 }

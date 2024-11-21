@@ -26,7 +26,7 @@ public class UserService {
         if (byemail.isPresent()){
             return "email id already taken";
         }
-        String hashpw = BCrypt.hashpw(user.getUsername(), BCrypt.gensalt(5));
+        String hashpw = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(5));
         user.setPassword(hashpw);
 //        user.setRole("USER-ROLE");
          userRepo.save(user);

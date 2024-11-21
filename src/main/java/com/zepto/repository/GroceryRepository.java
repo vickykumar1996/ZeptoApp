@@ -9,6 +9,11 @@ import java.util.Optional;
 
 
 public interface GroceryRepository extends JpaRepository<Grocery, Long> {
-    @Query("SELECT g FROM Grocery g WHERE g.groceryName = :grocery_name")
-    Optional<Grocery> searchGrocery(@Param("grocery_name") String groceryName);
+    @Query("SELECT g FROM Grocery g " +
+            "JOIN g.city c " +
+            "JOIN g.country co " +
+            "WHERE g.groceryName = :searchValue " +
+            "OR c.name = :searchValue " +
+            "OR co.name = :searchValue")
+    Optional<Grocery> searchByNameCityOrCountry(@Param("searchValue") String searchValue);
 }

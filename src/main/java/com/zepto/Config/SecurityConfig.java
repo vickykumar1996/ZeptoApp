@@ -16,10 +16,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(c->c.disable()).cors(c->c.disable());
         http.addFilterBefore(jwtFilter , AuthorizationFilter.class);
-        http.authorizeHttpRequests(auth->auth.requestMatchers("/api/v1/user/signup" , "/api/v1/user/login")
-                .permitAll()
-                .requestMatchers("/api/grocery/add").hasRole("ADMIN")
-                .anyRequest().authenticated());
+//        http.authorizeHttpRequests(auth->auth.requestMatchers("/api/v1/user/signup" , "/api/v1/user/login")
+//                .permitAll()
+//                .requestMatchers("/api/grocery/add").hasRole("ADMIN")
+//                .anyRequest().authenticated());
+        http.authorizeHttpRequests(auth-> auth.anyRequest().permitAll());
         return http.build();
     }
 }

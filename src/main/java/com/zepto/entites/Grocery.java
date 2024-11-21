@@ -21,17 +21,9 @@ public class Grocery {
     @Column(name = "grocery_price", nullable = false)
     private double groceryPrice;
 
-    @Column(name = "gerocery_quantity", nullable = false)
-    private long geroceryQuantity;
-
-    @Column(name = "country_orgin")
-    private String countryOrgin;
-
     @Column(name = "manufacturer_name", nullable = false)
     private String manufacturerName;
 
-    @Column(name = "product_address", nullable = false)
-    private String productAddress;
 
     @Column(name = "about")
     private String about;
@@ -39,5 +31,13 @@ public class Grocery {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
 
 }
