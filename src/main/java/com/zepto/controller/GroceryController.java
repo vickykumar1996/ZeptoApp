@@ -33,7 +33,7 @@ public class GroceryController {
 
     private final GroceryServiceImpl groceryService;
 
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<GroceryDto> saveGrocery(@Valid @RequestBody GroceryDto groceryDto , @AuthenticationPrincipal User user){
         groceryDto.setUser(user);
