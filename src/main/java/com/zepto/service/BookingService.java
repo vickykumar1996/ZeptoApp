@@ -7,6 +7,7 @@ import com.zepto.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -24,6 +25,7 @@ public class BookingService {
         boolean emailExists = userRepo.existsByName(name);
 
         if (nameExists && emailExists){
+            booking.setDate(LocalDate.now());
             Booking save = bookingRepository.save(booking);
             return save;
         }else {

@@ -39,7 +39,9 @@ public class BookingController {
         Grocery grocery = groceryRepository.findById(id).orElseThrow(()->
                 new ResourceNotFoundException("id is not present" + id) );
         Booking serviceBooking = bookingService.createBooking(booking);
-
+        if (serviceBooking==null){
+            return new ResponseEntity<>("your name or email is wrong" , HttpStatus.BAD_REQUEST);
+        }
          pdfService.generatePdf(filePath , grocery , serviceBooking);
          return new ResponseEntity<>("pdf generate successFull" , HttpStatus.CREATED);
     }
